@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // import COLORS & SIZES
-import GALIO_COLORS from './colors';
-import GALIO_SIZES from './sizes';
+import BAZZ_COLORS from './colors';
+import BAZZ_SIZES from './sizes';
 
 // default theme with COLORS & SIZES
 const BazzTheme = {
-  COLORS: GALIO_COLORS,
-  SIZES: GALIO_SIZES,
+  COLORS: BAZZ_COLORS,
+  SIZES: BAZZ_SIZES,
 };
 
 export default BazzTheme;
