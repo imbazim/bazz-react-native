@@ -2,7 +2,7 @@ import React from 'react';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import PropTypes from 'prop-types';
 
-import GalioTheme, { withGalio } from '../../theme';
+import BazzTheme, { withBazz } from '../../theme';
 import getIconType from '../../helpers/getIconType';
 import galioConfig from '../../config/galio.json';
 
@@ -14,7 +14,7 @@ function Icon({
   size = null,
   color = null,
   styles = {},
-  theme = GalioTheme,
+  theme = BazzTheme,
   medium = false,
   large = false,
   ...rest
@@ -56,4 +56,4 @@ Icon.propTypes = {
   theme: PropTypes.any,
 };
 
-export default withGalio(Icon);
+export default withBazz(Icon);

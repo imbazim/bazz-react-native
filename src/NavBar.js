@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Block from './Block';
 import Text from './atomic/ions/Text';
 import Icon from './atomic/ions/Icon';
-import GalioTheme, { withGalio } from './theme';
+import BazzTheme, { withBazz } from './theme';
 
 const { height } = Dimensions.get('screen');
 
@@ -105,7 +105,7 @@ NavBar.defaultProps = {
   rightStyle: null,
   style: null,
   styles: {},
-  theme: GalioTheme,
+  theme: BazzTheme,
 };
 
 NavBar.propTypes = {
@@ -171,4 +171,4 @@ const styles = theme =>
     },
   });
 
-export default withGalio(NavBar, styles);
+export default withBazz(NavBar, styles);

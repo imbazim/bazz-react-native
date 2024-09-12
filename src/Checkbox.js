@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import Icon from './atomic/ions/Icon';
 import Text from './atomic/ions/Text';
-import GalioTheme, { withGalio } from './theme';
+import BazzTheme, { withBazz } from './theme';
 
 function Checkbox({
   checkboxStyle,
@@ -163,7 +163,7 @@ Checkbox.defaultProps = {
   labelStyle: null,
   onChange: () => {},
   styles: {},
-  theme: GalioTheme,
+  theme: BazzTheme,
 };
 
 Checkbox.propTypes = {
@@ -191,4 +191,4 @@ Checkbox.propTypes = {
   theme: PropTypes.any,
 };
 
-export default withGalio(Checkbox, styles);
+export default withBazz(Checkbox, styles);

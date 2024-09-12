@@ -327,7 +327,7 @@ declare module 'bazz-react-native' {
   export class BazzProvider extends React.Component<BazzProviderProps> {}
 
   type NamedStyles = ViewStyle | TextStyle | ImageStyle;
-  export function withGalio<T extends ComponentType<any>>(
+  export function withBazz<T extends ComponentType<any>>(
     Component: T,
     styles: NamedStyles
   ): ComponentType<any>;

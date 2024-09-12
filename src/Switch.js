@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch as Switcher } from 'react-native';
 import PropTypes from 'prop-types';
-import GalioTheme, { withGalio } from './theme';
+import BazzTheme, { withBazz } from './theme';
 
 function Switch({
   initialValue,
@@ -18,7 +18,7 @@ function Switch({
     return null;
   }
 
-  // trackColor.true = color === 'primary' ? GalioTheme.COLORS.PRIMARY : color;
+  // trackColor.true = color === 'primary' ? BazzTheme.COLORS.PRIMARY : color;
 
   return (
     <Switcher
@@ -36,11 +36,11 @@ function Switch({
 }
 
 Switch.defaultProps = {
-  color: GalioTheme.COLORS.PRIMARY,
-  ios_backgroundColor: GalioTheme.COLORS.GREY,
+  color: BazzTheme.COLORS.PRIMARY,
+  ios_backgroundColor: BazzTheme.COLORS.GREY,
   trackColor: {
-    false: GalioTheme.COLORS.GREY,
-    true: GalioTheme.COLORS.PRIMARY,
+    false: BazzTheme.COLORS.GREY,
+    true: BazzTheme.COLORS.PRIMARY,
   },
   disabled: false,
   initialValue: false,
@@ -57,4 +57,4 @@ Switch.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-export default withGalio(Switch);
+export default withBazz(Switch);

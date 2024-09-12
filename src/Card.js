@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Block from './Block';
 import Text from './atomic/ions/Text';
 import Icon from './atomic/ions/Icon';
-import GalioTheme, { withGalio } from './theme';
+import BazzTheme, { withBazz } from './theme';
 
 function Card({
   avatar,
@@ -108,7 +108,7 @@ Card.defaultProps = {
   shadow: true,
   borderless: false,
   styles: {},
-  theme: GalioTheme,
+  theme: BazzTheme,
   title: '',
   titleColor: '',
   caption: '',
@@ -171,4 +171,4 @@ const styles = theme =>
     },
   });
 
-export default withGalio(Card, styles);
+export default withBazz(Card, styles);

@@ -18,7 +18,7 @@ import Toast from './Toast';
 import Link from './atomic/atoms/Link';
 
 
-import theme, { withGalio, BazzProvider, useGalioTheme } from './theme';
+import theme, { withBazz, BazzProvider, useBazzTheme } from './theme';
 
 import galioConfig from './config/galio.json';
 
@@ -41,9 +41,9 @@ export {
   Toast,
   Switch,
   theme,
-  withGalio,
+  withBazz,
   BazzProvider,
-  useGalioTheme,
+  useBazzTheme,
   galioConfig,
   GalioFont,
 };

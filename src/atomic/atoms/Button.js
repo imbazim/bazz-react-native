@@ -3,7 +3,7 @@ import { ActivityIndicator, Dimensions, StyleSheet, TouchableOpacity, Text } fro
 import PropTypes from 'prop-types';
 
 import Icon from '../ions/Icon';
-import GalioTheme, { withGalio } from '../../theme';
+import BazzTheme, { withBazz } from '../../theme';
 
 const { width } = Dimensions.get('window');
 
@@ -29,7 +29,7 @@ function Button({
     shadowless = false,
     shadowColor = false,
     styles = {},
-    theme = GalioTheme,
+    theme = BazzTheme,
     textStyle,
     uppercase = false,
     ...rest
@@ -213,4 +213,4 @@ const styles = theme =>
     },
   });
 
-export default withGalio(Button, styles);
+export default withBazz(Button, styles);

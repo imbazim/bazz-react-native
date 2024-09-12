@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Animated, StyleSheet, PanResponder } from 'react-native';
 import PropTypes from 'prop-types';
-import GalioTheme, { withGalio } from './theme';
+import BazzTheme, { withBazz } from './theme';
 
 class Slider extends PureComponent {
   constructor(props) {
@@ -186,7 +186,7 @@ Slider.defaultProps = {
   value: 0,
   step: 0,
   style: null,
-  theme: GalioTheme,
+  theme: BazzTheme,
   onSlidingComplete: () => {},
   onSlidingStart: () => {},
   onValueChange: () => {},
@@ -232,4 +232,4 @@ const styles = theme =>
     },
   });
 
-export default withGalio(Slider, styles);
+export default withBazz(Slider, styles);

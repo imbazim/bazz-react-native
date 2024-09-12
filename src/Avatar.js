@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import { withGalio } from 'theme';
+import { withBazz } from 'theme';
 
 const Avatar = ({
   source,
@@ -108,4 +108,4 @@ const styles = (theme) =>
     },
   });
 
-export default withGalio(Avatar, styles);
+export default withBazz(Avatar, styles);

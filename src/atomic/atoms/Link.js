@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Text from '../ions/Text';
-import GalioTheme, { withGalio } from '../../theme';
+import BazzTheme, { withBazz } from '../../theme';
 
 function Link({
     children,
@@ -21,7 +21,7 @@ function Link({
 
   Link.defaultProps = {
     children: null,
-    theme: GalioTheme,
+    theme: BazzTheme,
   };
 
   Link.propTypes = {
@@ -30,4 +30,4 @@ function Link({
     onPress: PropTypes.func.isRequired,
   };
 
-export default withGalio(Link);
+export default withBazz(Link);

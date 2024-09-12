@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from '../ions/Icon';
-import GalioTheme, { withGalio } from '../../theme';
+import BazzTheme, { withBazz } from '../../theme';
 
 function Input({
   style = null,
@@ -25,7 +25,7 @@ function Input({
   iconColor = null,
   topHelp = true,
   bottomHelp = false,
-  theme = GalioTheme,
+  theme = BazzTheme,
   styles = {},
   iconSize = null,
   iconContent = null,
@@ -188,4 +188,4 @@ const styles = theme =>
       borderWidth: 0,
     },
   });
-export default withGalio(Input, styles);
+export default withBazz(Input, styles);

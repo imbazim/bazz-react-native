@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
-import GalioTheme, { withGalio } from './theme';
+import BazzTheme, { withBazz } from './theme';
 
 function Block({
     row = false,
@@ -131,4 +131,4 @@ const styles = theme =>
     },
   });
 
-export default withGalio(Block, styles);
+export default withBazz(Block, styles);

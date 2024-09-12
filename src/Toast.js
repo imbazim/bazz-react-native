@@ -3,7 +3,7 @@ import { Dimensions, StyleSheet, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Text from './atomic/ions/Text';
-import GalioTheme, { withGalio } from './theme';
+import BazzTheme, { withBazz } from './theme';
 
 const { height } = Dimensions.get('screen');
 
@@ -41,7 +41,7 @@ class Toast extends Component {
     style: null,
     textStyle: null,
     styles: {},
-    theme: GalioTheme,
+    theme: BazzTheme,
     useNativeDriver: true
   };
 
@@ -176,4 +176,4 @@ const styles = (theme) =>
     },
   });
 
-export default withGalio(Toast, styles);
+export default withBazz(Toast, styles);

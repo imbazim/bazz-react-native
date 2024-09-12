@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Text from './atomic/ions/Text';
-import GalioTheme, { withGalio } from './theme';
+import BazzTheme, { withBazz } from './theme';
 
 function Radio({
                  color,
@@ -141,7 +141,7 @@ Radio.defaultProps = {
   labelStyle: null,
   onChange: () => {},
   styles: {},
-  theme: GalioTheme,
+  theme: BazzTheme,
   value: false
 };
 
@@ -164,4 +164,4 @@ Radio.propTypes = {
   value: PropTypes.bool
 };
 
-export default withGalio(Radio, styles);
+export default withBazz(Radio, styles);

@@ -6,55 +6,44 @@ import GALIO_COLORS from './colors';
 import GALIO_SIZES from './sizes';
 
 // default theme with COLORS & SIZES
-const GalioTheme = {
+const BazzTheme = {
   COLORS: GALIO_COLORS,
   SIZES: GALIO_SIZES,
 };
 
-export default GalioTheme;
+export default BazzTheme;
 
-// creating the GalioTheme context
-const GalioContext = React.createContext();
+// creating the BazzTheme context
+const BazzContext = React.createContext();
 
-/**
- * useGalioTheme 
- * Galio custom hook which returns the theme object
- */
-
-export function useGalioTheme() {
-  const theme = React.useContext(GalioContext);
+export function useBazzTheme() {
+  const theme = React.useContext(BazzContext);
 
   if (theme === undefined) {
     throw new Error(
-      'useGalioTheme must be used within a component wrapped with BazzProvider'
+      'useBazzTheme must be used within a component wrapped with BazzProvider'
     );
   }
 
   return theme;
 }
 
-/*
- *   withGalio
- *   args: Component - React Component, styles to be added to Component
- *   theme: if no styles or theme add default theme={ SIZES, COLORS }
- */
-
-export function withGalio(Component, styles) {
+export function withBazz(Component, styles) {
   // eslint-disable-next-line react/no-multi-comp
   class EnhancedComponent extends React.Component {
     render() {
       const { forwardedRef, ...rest } = this.props;
       return (
-        <GalioContext.Consumer>
+        <BazzContext.Consumer>
           {theme => (
             <Component
               ref={forwardedRef}
               {...rest}
-              theme={{ ...GalioTheme, ...theme }}
-              styles={styles && styles({ ...GalioTheme, ...theme })}
+              theme={{ ...BazzTheme, ...theme }}
+              styles={styles && styles({ ...BazzTheme, ...theme })}
             />
           )}
-        </GalioContext.Consumer>
+        </BazzContext.Consumer>
       );
     }
   }
@@ -63,11 +52,6 @@ export function withGalio(Component, styles) {
     return <EnhancedComponent forwardedRef={ref} {...props} />;
   });
 }
-
-/*
- *   BazzProvider using React.Component
- *   GalioContext.Provider value has the default value from { COLORS, SIZES }
- */
 
 // eslint-disable-next-line react/no-multi-comp
 export class BazzProvider extends React.Component {
@@ -81,12 +65,12 @@ export class BazzProvider extends React.Component {
     const { COLORS: CUSTOM_COLORS, SIZES: CUSTOM_SIZES, customTheme } = theme;
 
     const providerTheme = {
-      COLORS: { ...GalioTheme.COLORS, ...CUSTOM_COLORS },
-      SIZES: { ...GalioTheme.SIZES, ...CUSTOM_SIZES },
+      COLORS: { ...BazzTheme.COLORS, ...CUSTOM_COLORS },
+      SIZES: { ...BazzTheme.SIZES, ...CUSTOM_SIZES },
       ...customTheme,
     };
 
-    return <GalioContext.Provider value={providerTheme}>{children}</GalioContext.Provider>;
+    return <BazzContext.Provider value={providerTheme}>{children}</BazzContext.Provider>;
   }
 }
 

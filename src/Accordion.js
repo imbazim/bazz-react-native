@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 import Block from "./Block";
 import Icon from "./atomic/ions/Icon";
 import Text from "./atomic/ions/Text";
-import GalioTheme from "./theme";
+import BazzTheme from "./theme";
 
 const { width } = Dimensions.get("screen");
 
@@ -35,7 +35,7 @@ function AccordionHeader({
           name={chapterIcon.name}
           family={chapterIcon.family}
           size={chapterIcon.size || 14}
-          color={chapterIcon.color || GalioTheme.COLORS.PRIMARY}
+          color={chapterIcon.color || BazzTheme.COLORS.PRIMARY}
           style={chapterIcon.style || { marginRight: 5 }}
         />
       ) : null}
@@ -47,7 +47,7 @@ function AccordionHeader({
                 name="keyboard-arrow-up"
                 family="material"
                 size={16}
-                color={GalioTheme.COLORS.MUTED}
+                color={BazzTheme.COLORS.MUTED}
               />
             )
           : icon || (
@@ -55,7 +55,7 @@ function AccordionHeader({
                 name="keyboard-arrow-down"
                 family="material"
                 size={16}
-                color={GalioTheme.COLORS.MUTED}
+                color={BazzTheme.COLORS.MUTED}
               />
             )}
       </Block>
@@ -182,7 +182,7 @@ Accordion.propTypes = {
 };
 
 Accordion.defaultProps = {
-  theme: GalioTheme,
+  theme: BazzTheme,
   opened: 0
 };
 
