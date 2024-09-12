@@ -40,4 +40,4 @@ Under Bazz's belt:
 * BazzTheme
 
 
-© 2024 [@imbazim](https://x.com/imbazim) - made with 💚 for the community.
+© 2024 [@imbazim](https://x.com/imbazim) - made with ❤️ for the community.
