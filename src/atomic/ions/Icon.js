@@ -8,10 +8,6 @@ import galioConfig from '../../config/galio.json';
 
 const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', './fonts/galio.ttf');
 
-// Galio Fonts have to be linked with 'react-native link' if you're using react-native-cli
-// Galio Fonts have to loaded with Fonts.loadAsync if you're
-// using Expo (you can export GalioFont from index in order to import it)
-
 function Icon({
   name,
   family,

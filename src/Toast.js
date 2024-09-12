@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Dimensions, StyleSheet, Animated } from 'react-native';
 import PropTypes from 'prop-types';
-// Galio components
+
 import Text from './atomic/ions/Text';
 import GalioTheme, { withGalio } from './theme';
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-// galio components
+
 import Block from './Block';
 import Text from './atomic/ions/Text';
 import Icon from './atomic/ions/Icon';
