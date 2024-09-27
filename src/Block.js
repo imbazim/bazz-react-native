@@ -124,7 +124,7 @@ const styles = theme =>
       },
       shadowOpacity: theme.SIZES.BLOCK_SHADOW_OPACITY,
       shadowRadius: theme.SIZES.BLOCK_SHADOW_RADIUS,
-      elevation: theme.SIZES.ANDROID_ELEVATION,
+      elevation: 1,
     },
     fluid: {
       width: 'auto',
