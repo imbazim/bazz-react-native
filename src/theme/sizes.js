@@ -34,7 +34,7 @@ const SIZES = {
   // Block styles
   BLOCK_SHADOW_OPACITY: 0.15,
   BLOCK_SHADOW_RADIUS: 8,
-  ANDROID_ELEVATION: 8,
+  ANDROID_ELEVATION: 6,
 
   // Card styles
   CARD_BORDER_RADIUS: BASE * 0.4,
