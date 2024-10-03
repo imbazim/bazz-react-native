@@ -9,6 +9,7 @@ import Checkbox from './Checkbox';
 import DeckSwiper from './DeckSwiper';
 import Icon from './atomic/ions/Icon';
 import Input from './atomic/atoms/Input';
+import TextArea from './atomic/atoms/TextArea';
 import NavBar from './NavBar';
 import Radio from './Radio';
 import Slider from './Slider';
@@ -33,6 +34,7 @@ export {
   DeckSwiper,
   Icon,
   Input,
+  TextArea,
   NavBar,
   Radio,
   Slider,

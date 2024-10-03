@@ -157,6 +157,36 @@ declare module 'bazz-react-native' {
   }
   export class Input extends React.Component<InputProps> {}
 
+  export interface TextAreaProps
+  extends Omit<
+      TextInputProps,
+      | 'style'
+      | 'keyboardType'
+      | 'secureTextEntry'
+      | 'placeholderTextColor'
+      | 'underlineColorAndroid'
+    >,
+    BaseProps {
+  type?: TextInputProps['keyboardType'];
+  password?: boolean;
+  label?: string;
+  bgColor?: string;
+  rounded?: boolean;
+  borderless?: boolean;
+  viewPass?: boolean;
+  icon?: string;
+  iconColor?: string;
+  family?: IconFamilyType;
+  color?: string;
+  help?: string;
+  left?: boolean;
+  right?: boolean;
+  topHelp?: boolean;
+  bottomHelp?: boolean;
+  iconSize?: number;
+}
+export class TextArea extends React.Component<TextAreaProps> {}
+
   export interface NavBarProps extends BaseProps {
     back?: boolean;
     hideLeft?: boolean;
