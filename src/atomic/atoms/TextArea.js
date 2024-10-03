@@ -16,7 +16,6 @@ function TextArea({
   helpStyles = null,
   bgColor = null,
   borderless = false,
-  viewPass = false,
   rounded = false,
   icon = null,
   family = null,
@@ -29,16 +28,10 @@ function TextArea({
   styles = {},
   iconSize = null,
   iconContent = null,
-  password = false,
   onRef = null,
   error = false,
   ...rest
 }) {
-  const [isPassword, setIsPassword] = React.useState(false);
-  React.useEffect(() => {
-    setIsPassword(password);
-  }, []);
-
   const inputViewStyles = [
     styles.inputStyle,
     styles.inputContainer,
@@ -62,22 +55,11 @@ function TextArea({
       name={icon}
       family={family}
       size={iconSize || theme.SIZES.BASE * 1.0625}
-      style={{ marginRight: left && !right ? 4 : 0 }}
+      style={{ marginRight: left && !right ? 4 : 0, marginTop: 10 }}
       color={(error && theme.COLORS.DANGER) || iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
     />
   ) : (
     iconContent
-  );
-
-  const viewPassElement = password && viewPass && (
-    <TouchableOpacity style={{ marginLeft: 2, paddingVertical: theme.SIZES.INPUT_HORIZONTAL-2, paddingLeft: 10 }} onPress={() => setIsPassword(!isPassword)}>
-      <Icon
-        size={iconSize || theme.SIZES.BASE * 1.0625}
-        color={'#1e7ad9'}
-        name="eye"
-        family="AntDesign"
-      />
-    </TouchableOpacity>
   );
   
   const labelContent = label?.length > 0 && <Text style={[styles.label, labelStyles || {}]}>{label}</Text>;
@@ -98,14 +80,12 @@ function TextArea({
           ref={onRef}
           style={inputStyles}
           keyboardType={type}
-          secureTextEntry={isPassword}
           placeholderTextColor={placeholderTextColor}
           underlineColorAndroid="transparent"
           multiline
           {...rest}
         />
         {right && iconInstance}
-        {viewPassElement}
       </View>
       {bottomHelp && helpContent}
     </View>
@@ -116,13 +96,11 @@ TextArea.propTypes = {
   style: PropTypes.any,
   textInputStyle: PropTypes.any,
   type: PropTypes.string,
-  password: PropTypes.bool,
   placeholderTextColor: PropTypes.string,
   label: PropTypes.string,
   bgColor: PropTypes.string,
   rounded: PropTypes.bool,
   borderless: PropTypes.bool,
-  viewPass: PropTypes.bool,
   iconColor: PropTypes.string,
   icon: PropTypes.string,
   family: PropTypes.string,
@@ -149,18 +127,23 @@ const styles = theme =>
       height: theme.SIZES.INPUT_HEIGHT,
       paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL,
       width: '100%',
+      textAlignVertical: "top",
     },
     inputText: {
       color: theme.COLORS.INPUT,
       fontSize: theme.SIZES.INPUT_TEXT,
       textDecorationColor: 'transparent',
       textShadowColor: 'transparent',
-      paddingVertical: theme.SIZES.INPUT_HORIZONTAL,
+      paddingVertical: 10,
+      height: 78,
+      textAlignVertical: "top",
     },
     inputContainer: {
       flexDirection: 'row',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       justifyContent: 'center',
+      textAlignVertical: "top",
+      height: 80,
     },
     inputView: {
       flex: 1,
