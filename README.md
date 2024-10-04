@@ -9,14 +9,14 @@
 ## Quick Start
 
 #### Library instructions
-Use our awesome components inside your own projects by running: 
+Use my awesome components inside your own projects by running: 
 ```bash
-npm install git+https://github.com/imbazim/bazz-react-native.git
+npm install bazz-react-native
 ```
 
 Import our UI components to your screens:
 ```js
-import { Block, Button, Card, Icon, Input, NavBar, Text } from 'bazz-react-native';
+import { Block, Button, Card, Icon, Input, TextArea, NavBar, Text } from 'bazz-react-native';
 ```
 
 
@@ -31,6 +31,7 @@ Under Bazz's belt:
 * Deck Swiper
 * Icon
 * Input
+* TextArea
 * NavBar
 * Radio
 * Text
