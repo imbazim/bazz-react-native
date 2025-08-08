@@ -14,7 +14,7 @@ Use my awesome components inside your own projects by running:
 npm install bazz-react-native
 ```
 
-Import our UI components to your screens:
+Import my UI components to your screens:
 ```js
 import { Block, Button, Card, Icon, Input, TextArea, NavBar, Text } from 'bazz-react-native';
 ```
