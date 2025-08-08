@@ -1,7 +1,7 @@
 
 <h1 align="center">Bazz React Native</h1>
 <p align="center">
-  <p align="center">Bazz React Native Framework. Use the power of react native to easily give life to your future iOS and Android projects.</p>
+  <p align="center">A versatile UI toolkit that harnesses the power of React Native to streamline the development of your next iOS and Android app.</p>
   <p align="right" style="font-size: 2">Follow me:
   <a href="https://x.com/imbazim">@imbazim</a></p>
 </p>
