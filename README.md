@@ -41,4 +41,4 @@ Under Bazz's belt:
 * BazzTheme
 
 
-© 2025 [@imbazim](https://bazz-resume.vercel.app) - made with ❤️ for the community.
+© 2025 [@imbazim](https://imbazim.vercel.app) - made with ❤️ for the community.
