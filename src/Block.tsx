@@ -1,7 +1,7 @@
 import React from 'react';
 import type { JSX } from 'react';
 import { ViewStyle, View, StyleSheet, SafeAreaView, Platform } from 'react-native';
-import { useGalioTheme } from './theme';
+import { useBazzTheme } from './theme';
 
 interface BlockProps {
     row?: boolean;
@@ -46,7 +46,7 @@ function Block({
     style,
     ...rest
 }: BlockProps): JSX.Element {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
 
     const styleBlock = [
         styles(theme).block,
@@ -83,7 +83,7 @@ function Block({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
+const styles = (theme: ReturnType<typeof useBazzTheme>) =>
     StyleSheet.create({
         block: {
             flexDirection: 'column',

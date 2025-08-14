@@ -9,10 +9,10 @@ import {
   ImageSourcePropType,
 } from 'react-native';
 
-declare module 'galio-framework' {
+declare module 'bazz-react-native' {
   type IconFamilyType =
     | 'fontisto'
-    | 'Galio'
+    | 'Bazz'
     | 'zocial'
     | 'octicon'
     | 'material'
@@ -376,7 +376,7 @@ declare module 'galio-framework' {
   
   export const theme: ThemeType;
   
-  export interface GalioProviderProps extends PropsWithChildren<{
+  export interface BazzProviderProps extends PropsWithChildren<{
     theme?: {
       COLORS?: Partial<ThemeType['COLORS']>;
       SIZES?: Partial<ThemeType['SIZES']>;
@@ -384,16 +384,16 @@ declare module 'galio-framework' {
     };
   }> {}
   
-  export const GalioProvider: FC<GalioProviderProps>;
+  export const BazzProvider: FC<BazzProviderProps>;
 
   type NamedStyles = ViewStyle | TextStyle | ImageStyle;
   
-  export function withGalio<T extends ComponentType<any>>(
+  export function withBazz<T extends ComponentType<any>>(
     Component: T,
     styles: NamedStyles
   ): ComponentType<any>;
 
-  export function useGalioTheme(): ThemeType;
+  export function useBazzTheme(): ThemeType;
 }
 
 declare module '*.ttf' {

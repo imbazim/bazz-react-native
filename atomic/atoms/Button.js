@@ -21,7 +21,7 @@ var icon_1 = __importDefault(require("../ions/icon"));
 var width = react_native_1.Dimensions.get('window').width;
 function Button(_a) {
     var _b = _a.color, color = _b === void 0 ? 'primary' : _b, children = _a.children, _c = _a.disabled, disabled = _c === void 0 ? false : _c, icon = _a.icon, _d = _a.iconRight, iconRight = _d === void 0 ? false : _d, iconFamily = _a.iconFamily, _e = _a.iconSize, iconSize = _e === void 0 ? 16 : _e, iconColor = _a.iconColor, _f = _a.loading, loading = _f === void 0 ? false : _f, _g = _a.loadingSize, loadingSize = _g === void 0 ? 'small' : _g, loadingColor = _a.loadingColor, _h = _a.onlyIcon, onlyIcon = _h === void 0 ? false : _h, _j = _a.opacity, opacity = _j === void 0 ? 0.8 : _j, _k = _a.round, round = _k === void 0 ? false : _k, _l = _a.size, size = _l === void 0 ? 'default' : _l, _m = _a.shadowless, shadowless = _m === void 0 ? false : _m, style = _a.style, textStyle = _a.textStyle, _o = _a.uppercase, uppercase = _o === void 0 ? false : _o, _p = _a.lowercase, lowercase = _p === void 0 ? false : _p, _q = _a.capitalize, capitalize = _q === void 0 ? false : _q, onPress = _a.onPress;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useBazzTheme)();
     var _r = (0, react_1.useState)(false), pressed = _r[0], setPressed = _r[1];
     var getButtonColor = (0, react_1.useCallback)(function (colorName) {
         var colorMap = {

@@ -4,7 +4,7 @@ import { Dimensions, Platform } from "react-native";
 import Text from "./atomic/ions/text";
 import Block from "./Block";
 import Icon from "./atomic/ions/icon";
-import { useGalioTheme } from "./theme";
+import { useBazzTheme } from "./theme";
 
 const { width } = Dimensions.get('screen');
 
@@ -14,7 +14,7 @@ interface AccordionContentProps {
 }
 
 function AccordionContent({ content, contentStyle }: AccordionContentProps): JSX.Element {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     return <Text style={[styles(theme).content, contentStyle]}>{content}</Text>;
 }
 
@@ -35,7 +35,7 @@ function AccordionHeader({
     title,
     chapterIcon
 }: AccordionHeaderProps): JSX.Element {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     return (
         <Block row middle style={[{ padding: 6 }, headerStyle] as any}>
             {chapterIcon ? (
@@ -195,7 +195,7 @@ function Accordion({
     listStyle,
     style
 }: MainAccordionProps): JSX.Element {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     const [selected, setSelected] = useState<number | undefined>(opened);
     
     return (
@@ -221,7 +221,7 @@ function Accordion({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
+const styles = (theme: ReturnType<typeof useBazzTheme>) =>
     StyleSheet.create({
         container: {
             flex: 1,

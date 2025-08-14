@@ -2,7 +2,7 @@ import React, { memo, useMemo } from 'react';
 import type { JSX } from 'react';
 import { Platform, StyleProp, StyleSheet, Text, TextStyle, ViewStyle } from 'react-native';
 import { normalize } from '../../helpers/normalize';
-import GalioTheme, { useGalioTheme } from '../../theme';
+import BazzTheme, { useBazzTheme } from '../../theme';
 
 interface TypographyProps {
     style?: StyleProp<TextStyle>;
@@ -51,7 +51,7 @@ function Typography({
     shadow = false,
     ...rest
 }: TypographyProps): JSX.Element {
-    const theme = useGalioTheme?.() || propTheme || GalioTheme;
+    const theme = useBazzTheme?.() || propTheme || BazzTheme;
 
     const getShadowStyle = (): TextStyle | undefined => {
         if (!shadow) return undefined;

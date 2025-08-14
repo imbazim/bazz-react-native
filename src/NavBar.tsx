@@ -1,7 +1,7 @@
 import React, { JSX, useMemo, useCallback } from "react";
 import { TextProps, TextStyle, View, StyleSheet, Pressable, Platform } from "react-native";
 import { Dimensions, ViewStyle } from "react-native";
-import { useGalioTheme } from "./theme";
+import { useBazzTheme } from "./theme";
 import Text from "./atomic/ions/text";
 import Icon from "./atomic/ions/icon";
 import Block from "./Block";
@@ -42,7 +42,7 @@ function NavBar({
     leftIconName,
     leftStyle,
     leftIconFamily,
-    onLeftPress = () => {},
+    onLeftPress = () => { },
     right,
     rightStyle,
     style,
@@ -53,15 +53,15 @@ function NavBar({
     titleTextProps,
     accessibilityLabel,
 }: NavBarProps): JSX.Element {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
 
     const renderTitle = useCallback(() => {
         if (typeof title === 'string') {
             return (
                 <View style={styles(theme).title}>
-                    <Text 
-                        numberOfLines={titleNumberOfLines || 1} 
-                        style={[styles(theme).titleTextStyle, titleStyle]} 
+                    <Text
+                        numberOfLines={titleNumberOfLines || 1}
+                        style={[styles(theme).titleTextStyle, titleStyle]}
                         {...titleTextProps}
                     >
                         {title}
@@ -102,7 +102,7 @@ function NavBar({
     const renderRight = useCallback(() => {
         const hasIcons = React.Children.count(right) > 1;
         const rightStyles = { ...styles(theme).right, ...rightStyle };
-        
+
         if (!hideRight) {
             return (
                 <View style={rightStyles}>
@@ -124,88 +124,88 @@ function NavBar({
         const transparentStyle = transparent ? styles(theme).transparent : {};
         return { ...baseStyle, ...transparentStyle, ...style };
     }, [theme, transparent, style]);
-    
+
     return (
         <Block style={navStyles}>
             {renderLeft()}
             {renderTitle()}
             {renderRight()}
-        </Block>        
+        </Block>
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) => 
+const styles = (theme: ReturnType<typeof useBazzTheme>) =>
     StyleSheet.create({
-    navBar: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      backgroundColor: theme.COLORS.LIGHT_MODE.white,
-      paddingVertical: theme.SIZES.BASE * 1,
-      paddingHorizontal: theme.SIZES.BASE * 1,
-      height: 56,
-      width: '100%',
-      borderBottomWidth: 1,
-      borderBottomColor: theme.COLORS.LIGHT_MODE.grey || '#f0f0f0',
-      ...Platform.select({
-        ios: {
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.08,
-          shadowRadius: 8,
+        navBar: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            backgroundColor: theme.COLORS.LIGHT_MODE.white,
+            paddingVertical: theme.SIZES.BASE * 1,
+            paddingHorizontal: theme.SIZES.BASE * 1,
+            height: 56,
+            width: '100%',
+            borderBottomWidth: 1,
+            borderBottomColor: theme.COLORS.LIGHT_MODE.grey || '#f0f0f0',
+            ...Platform.select({
+                ios: {
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.08,
+                    shadowRadius: 8,
+                },
+                android: {
+                    elevation: 4,
+                },
+                web: {
+                    boxShadow: '0px 2px 12px rgba(0, 0, 0, 0.08)',
+                },
+            }),
         },
-        android: {
-          elevation: 4,
+        title: {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingHorizontal: theme.SIZES.BASE * 0.5,
         },
-        web: {
-          boxShadow: '0px 2px 12px rgba(0, 0, 0, 0.08)',
+        titleTextStyle: {
+            fontWeight: '700',
+            fontSize: theme.SIZES.FONT * 1.1,
+            color: theme.COLORS.LIGHT_MODE.black,
+            textAlign: 'center',
+            letterSpacing: 0.3,
         },
-      }),
-    },
-    title: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingHorizontal: theme.SIZES.BASE * 0.5,
-    },
-    titleTextStyle: {
-      fontWeight: '700',
-      fontSize: theme.SIZES.FONT * 1.1,
-      color: theme.COLORS.LIGHT_MODE.black,
-      textAlign: 'center',
-      letterSpacing: 0.3,
-    },
-    left: {
-      minWidth: 40,
-      height: 40,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginRight: theme.SIZES.BASE * 0.25,
-      borderRadius: 20,
-      backgroundColor: 'transparent',
-    },
-    right: {
-      minWidth: 40,
-      height: 40,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginLeft: theme.SIZES.BASE * 0.25,
-      borderRadius: 20,
-      backgroundColor: 'transparent',
-      flexDirection: 'row',
-      flexWrap: 'nowrap',
-    },
-    transparent: {
-      backgroundColor: 'transparent',
-      borderColor: 'transparent',
-      borderWidth: 0,
-      shadowOpacity: 0,
-      elevation: 0,
-    },
-    rightIconsContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-});
+        left: {
+            minWidth: 40,
+            height: 40,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginRight: theme.SIZES.BASE * 0.25,
+            borderRadius: 20,
+            backgroundColor: 'transparent',
+        },
+        right: {
+            minWidth: 40,
+            height: 40,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginLeft: theme.SIZES.BASE * 0.25,
+            borderRadius: 20,
+            backgroundColor: 'transparent',
+            flexDirection: 'row',
+            flexWrap: 'nowrap',
+        },
+        transparent: {
+            backgroundColor: 'transparent',
+            borderColor: 'transparent',
+            borderWidth: 0,
+            shadowOpacity: 0,
+            elevation: 0,
+        },
+        rightIconsContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
+    });
 
 export default NavBar;

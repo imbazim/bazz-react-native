@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Dimensions, StyleSheet, Animated, View } from 'react-native';
-import { useGalioTheme } from './theme';
+import { useBazzTheme } from './theme';
 import Text from './atomic/ions/text';
 
 const { height, width } = Dimensions.get('screen');
@@ -30,7 +30,7 @@ function Toast({
     style,
     textStyle,
 }: ToastProps) {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     const [internalIsShow, setInternalIsShow] = useState(isShow);
     const [opacity, setOpacity] = useState(0);
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -39,11 +39,11 @@ function Toast({
 
     const getThemeColor = (colorName?: string) => {
         if (!colorName) return theme.COLORS.LIGHT_MODE.primary;
-        
+
         if (typeof colorName === 'string' && colorName.startsWith('#')) {
             return colorName;
         }
-        
+
         const colorMap: { [key: string]: string } = {
             'primary': theme.COLORS.LIGHT_MODE.primary,
             'success': theme.COLORS.LIGHT_MODE.success,
@@ -52,7 +52,7 @@ function Toast({
             'danger': theme.COLORS.LIGHT_MODE.danger,
             'info': theme.COLORS.LIGHT_MODE.info,
         };
-        
+
         return colorMap[colorName] || theme.COLORS.LIGHT_MODE.primary;
     };
 
@@ -67,9 +67,9 @@ function Toast({
     };
 
     useEffect(() => {
-        
+
         if (isShow && !internalIsShow) {
-            
+
             setInternalIsShow(true);
             setOpacity(1);
             animationRef.current = Animated.timing(fadeAnim, {
@@ -77,25 +77,25 @@ function Toast({
                 duration: fadeInDuration,
                 useNativeDriver: false,
             });
-            
+
         }
-        
+
         if (!isShow && internalIsShow) {
             console.log('Hiding toast');
             setOpacity(0); // Set opacity immediately for fallback
-            
+
             animationRef.current = Animated.timing(fadeAnim, {
                 toValue: 0,
                 duration: fadeOutDuration,
                 useNativeDriver: false,
             });
-            
-            
+
+
             timeoutRef.current = setTimeout(() => {
                 setInternalIsShow(false);
             }, fadeOutDuration);
         }
-        
+
         return () => {
             if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
@@ -113,17 +113,17 @@ function Toast({
         return children;
     };
 
-   
+
 
     const backgroundColor = getThemeColor(color);
     const borderRadius = round ? theme.SIZES.BASE * 2 : theme.SIZES.BASE;
     const topPosition = getTopPosition();
-    
-   
-    
+
+
+
     const toastStyles = [
         styles(theme).toast,
-        { 
+        {
             backgroundColor,
             top: topPosition,
             opacity: opacity,
@@ -141,7 +141,7 @@ function Toast({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
+const styles = (theme: ReturnType<typeof useBazzTheme>) =>
     StyleSheet.create({
         overlay: {
             position: 'absolute',

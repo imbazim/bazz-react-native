@@ -1,4 +1,4 @@
-import { useGalioTheme } from "../../theme";
+import { useBazzTheme } from "../../theme";
 import { useCallback, useState } from "react";
 import type { JSX } from "react";
 import { ActivityIndicator, Dimensions, Platform, Pressable, StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
@@ -55,7 +55,7 @@ function Button({
     capitalize = false,
     onPress,
 }: ButtonProps): JSX.Element {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
 
     const [pressed, setPressed] = useState(false);
 
@@ -181,7 +181,7 @@ function Button({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
+const styles = (theme: ReturnType<typeof useBazzTheme>) =>
     StyleSheet.create({
         defaultButton: {
             borderRadius: theme.SIZES.BASE*2,

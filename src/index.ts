@@ -21,9 +21,9 @@ export { default as Icon } from './atomic/ions/icon';
 export { default as Text } from './atomic/ions/text';
 
 // Theme and Utilities
-export { default as theme, GalioProvider, useGalioTheme, withGalio } from './theme';
-export { default as galioConfig } from './config/galio.json';
+export { default as theme, BazzProvider, useBazzTheme, withBazz } from './theme';
+export { default as bzConfig } from './config/bz.json';
 
 // Fonts
-const GalioFont = require('./fonts/galio.ttf');
-export { GalioFont }; 
+const BazzFont = require('./fonts/bz.ttf');
+export { BazzFont }; 

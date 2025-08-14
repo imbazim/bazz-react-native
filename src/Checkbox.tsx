@@ -1,6 +1,6 @@
 import { JSX, useState } from "react";
 import { Image, ImageStyle, Pressable, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { useGalioTheme } from "./theme";
+import { useBazzTheme } from "./theme";
 import Text from "./atomic/ions/text";
 import Icon from "./atomic/ions/icon";
 
@@ -38,7 +38,7 @@ function renderLabel({
     imageStyle,
     flexDirection,
 }: LabelProps): JSX.Element | null {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     const labelStyles = [
         styles(theme).textStyles,
         disabled && styles(theme).disabledLabel,
@@ -140,7 +140,7 @@ function Checkbox({
     accessibilityLabel,
     accessibilityHint,
 }: CheckboxProps): JSX.Element {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     const [checked, setChecked] = useState(initialValue);
 
     const colorStyle = color 
@@ -189,7 +189,7 @@ function Checkbox({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
+const styles = (theme: ReturnType<typeof useBazzTheme>) =>
   StyleSheet.create({
     container: {
       flexDirection: 'row',

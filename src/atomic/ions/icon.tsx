@@ -3,11 +3,11 @@ import type { JSX } from 'react';
 import { Fontisto } from '@react-native-vector-icons/fontisto';
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 
-import galioConfig from '../../config/galio.json';
+import bzConfig from '../../config/bz.json';
 import getIconType from '../../helpers/getIconType';
-import { useGalioTheme } from '../../theme';
+import { useBazzTheme } from '../../theme';
 
-const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', require('../../fonts/galio.ttf'));
+const Bazz = createIconSetFromIcoMoon(bzConfig, 'Bazz', require('../../fonts/bz.ttf'));
 
 export interface IconProps {
     name: string;
@@ -28,7 +28,7 @@ function Icon({
     large = false,
     ...rest
 }: IconProps): JSX.Element | null {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
 
     const iconSize = 
         size ||
@@ -40,8 +40,8 @@ function Icon({
 
     const iconColor = color || theme.COLORS.LIGHT_MODE.black;
 
-    if (family === 'Galio') {
-        return name ? <Galio name={name} size={iconSize} color={iconColor} {...rest} /> : null;
+    if (family === 'Bazz') {
+        return name ? <Bazz name={name} size={iconSize} color={iconColor} {...rest} /> : null;
     }
 
     if (family === 'fontisto') {

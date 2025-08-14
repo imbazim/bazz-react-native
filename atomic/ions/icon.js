@@ -39,13 +39,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var react_native_vector_icons_1 = require("react-native-vector-icons");
-var galio_json_1 = __importDefault(require("../../config/galio.json"));
+var bz_json_1 = __importDefault(require("../../config/bz.json"));
 var getIconType_1 = __importDefault(require("../../helpers/getIconType"));
 var theme_1 = require("../../theme");
-var Galio = (0, react_native_vector_icons_1.createIconSetFromIcoMoon)(galio_json_1.default, 'Galio', './fonts/galio.ttf');
+var Bazz = (0, react_native_vector_icons_1.createIconSetFromIcoMoon)(bz_json_1.default, 'Bazz', './fonts/bz.ttf');
 function Icon(_a) {
     var name = _a.name, family = _a.family, size = _a.size, color = _a.color, _b = _a.medium, medium = _b === void 0 ? false : _b, _c = _a.large, large = _c === void 0 ? false : _c, rest = __rest(_a, ["name", "family", "size", "color", "medium", "large"]);
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useBazzTheme)();
     var iconSize = size ||
         (medium
             ? theme.SIZES.ICON_MEDIUM
@@ -53,8 +53,8 @@ function Icon(_a) {
                 ? theme.SIZES.ICON_LARGE
                 : theme.SIZES.ICON);
     var iconColor = color || theme.COLORS.LIGHT_MODE.black;
-    if (family === 'Galio') {
-        return name ? <Galio name={name} size={iconSize} color={iconColor} {...rest}/> : null;
+    if (family === 'Bazz') {
+        return name ? <Bazz name={name} size={iconSize} color={iconColor} {...rest}/> : null;
     }
     var IconInstance = (0, getIconType_1.default)(family);
     return name && IconInstance ? (<IconInstance name={name} size={iconSize} color={iconColor} {...rest}/>) : null;

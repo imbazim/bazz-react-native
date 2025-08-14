@@ -1,7 +1,7 @@
-import React,{forwardRef, useImperativeHandle, useRef, useState, useEffect} from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useState, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet, Pressable, KeyboardTypeOptions, ViewStyle, TextStyle, Platform } from 'react-native';
 import Icon from '../ions/icon';
-import  { useGalioTheme } from '../../theme';
+import { useBazzTheme } from '../../theme';
 
 export interface InputProps {
   style?: ViewStyle;
@@ -84,30 +84,30 @@ const Input = forwardRef<InputRef, InputProps>(({
   error,
   onRef,
   ...rest
-}, ref)=> {
-  const theme = useGalioTheme();
+}, ref) => {
+  const theme = useBazzTheme();
   const [isPassword, setIsPassword] = useState(password);
   const inputRef = useRef<TextInput>(null)
 
-  useImperativeHandle(ref, ()=> ({
+  useImperativeHandle(ref, () => ({
     focus: () => inputRef.current?.focus(),
     blur: () => inputRef.current?.blur(),
     clear: () => inputRef.current?.clear(),
     isFocused: () => inputRef.current?.isFocused() || false,
   }));
 
-  useEffect(()=> {
+  useEffect(() => {
     setIsPassword(password);
-  },[password]);
+  }, [password]);
 
   const inputViewStyles = [
     styles(theme).inputStyle,
     styles(theme).inputContainer,
-    bgColor && { backgroundColor: bgColor},
+    bgColor && { backgroundColor: bgColor },
     rounded && styles(theme).rounded,
     borderless && styles(theme).borderless,
-    error && { borderColor: theme.COLORS.LIGHT_MODE.danger},
-    rest.multiline && { minHeight: theme.SIZES.INPUT_HEIGHT, height: 'auto' as any},
+    error && { borderColor: theme.COLORS.LIGHT_MODE.danger },
+    rest.multiline && { minHeight: theme.SIZES.INPUT_HEIGHT, height: 'auto' as any },
     style,
   ].filter(Boolean) as ViewStyle[];
 
@@ -115,7 +115,7 @@ const Input = forwardRef<InputRef, InputProps>(({
     styles(theme).inputView,
     borderless && icon && styles(theme).inputIcon,
     styles(theme).inputText,
-    color && { color},
+    color && { color },
     rest.multiline && { textAlignVertical: 'top' as const },
     textInputStyle || {}
   ].filter(Boolean);
@@ -151,10 +151,10 @@ const Input = forwardRef<InputRef, InputProps>(({
     <Text style={[styles(theme).helpText, helpStyles || {}]}>{help}</Text>
   );
 
-  return(
+  return (
     <View
-      style ={{
-        marginVertical: theme.SIZES.BASE /2,
+      style={{
+        marginVertical: theme.SIZES.BASE / 2,
         alignContent: 'center',
       }}
     >
@@ -186,7 +186,7 @@ const Input = forwardRef<InputRef, InputProps>(({
 
 Input.displayName = 'Input';
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) => 
+const styles = (theme: ReturnType<typeof useBazzTheme>) =>
   StyleSheet.create({
     inputStyle: {
       backgroundColor: theme.COLORS.LIGHT_MODE.white,
@@ -234,4 +234,4 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
     }
   })
 
-  export default Input;
+export default Input;

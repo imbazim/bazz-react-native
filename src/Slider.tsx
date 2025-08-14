@@ -7,7 +7,7 @@ import {
   LayoutChangeEvent,
   ViewStyle,
 } from 'react-native';
-import { useGalioTheme } from './theme';
+import { useBazzTheme } from './theme';
 
 interface SliderProps {
   value?: number;
@@ -37,9 +37,9 @@ const Slider: React.FC<SliderProps> = ({
   thumbStyle,
   accessibilityLabel,
   accessibilityHint,
-}: SliderProps):JSX.Element => {
-  
-  const theme = useGalioTheme();
+}: SliderProps): JSX.Element => {
+
+  const theme = useBazzTheme();
   const [containerWidth, setContainerWidth] = useState(0);
   const trackWidth = useRef(0);
   const thumbX = useRef(new Animated.Value(0)).current;
@@ -53,7 +53,7 @@ const Slider: React.FC<SliderProps> = ({
     return ratio * trackWidth.current;
   };
 
-  
+
   const positionToValue = (pos: number) => {
     const ratio = pos / trackWidth.current;
     const rawValue = ratio * (maximumValue - minimumValue) + minimumValue;
@@ -77,7 +77,7 @@ const Slider: React.FC<SliderProps> = ({
       onMoveShouldSetPanResponder: () => !disabled,
       onPanResponderGrant: (_, gestureState) => {
         if (disabled) return;
-        
+
         const relativeX = gestureState.x0 - trackLayout.current.x;
         const thumbRadius = (theme?.SIZES?.THUMB_SIZE || 25) / 2;
         const clampedX = Math.max(thumbRadius, Math.min(relativeX, trackWidth.current - thumbRadius));
@@ -86,14 +86,14 @@ const Slider: React.FC<SliderProps> = ({
       },
       onPanResponderMove: (_, gestureState) => {
         if (disabled) return;
-        
+
         const relativeX = gestureState.moveX - trackLayout.current.x;
         const thumbRadius = (theme?.SIZES?.THUMB_SIZE || 25) / 2;
         const clampedX = Math.max(thumbRadius, Math.min(relativeX, trackWidth.current - thumbRadius));
-        
+
         currentThumbPosition.current = clampedX;
         thumbX.setValue(clampedX);
-        
+
         const newValue = positionToValue(clampedX);
         if (newValue !== currentValue.current) {
           currentValue.current = newValue;
@@ -120,63 +120,63 @@ const Slider: React.FC<SliderProps> = ({
 
   return (
     <View
-        style={[styles(theme).container, containerStyle]}
-        onLayout={handleContainerLayout}
+      style={[styles(theme).container, containerStyle]}
+      onLayout={handleContainerLayout}
     >
-        <View 
-            onLayout={onTrackLayout}
-            style = {[styles(theme).track, trackStyle]}
-            ></View>
-        <View style={[
-            styles(theme).track,
-            {
-                position: 'absolute',
-                width: trackWidth.current,
-                backgroundColor: activeColor || theme?.COLORS?.LIGHT_MODE?.primary || '#007AFF',
-            }
-        ]} 
-        >
-            <Animated.View
-                style={[
-                    styles(theme).thumb,
-                    thumbStyle,
-                    disabled && styles(theme).disabled,
-                    {transform: [{ translateX: thumbX }]},
-                ]}
-                {...panResponder.panHandlers}
-            />
-        </View>
+      <View
+        onLayout={onTrackLayout}
+        style={[styles(theme).track, trackStyle]}
+      ></View>
+      <View style={[
+        styles(theme).track,
+        {
+          position: 'absolute',
+          width: trackWidth.current,
+          backgroundColor: activeColor || theme?.COLORS?.LIGHT_MODE?.primary || '#007AFF',
+        }
+      ]}
+      >
+        <Animated.View
+          style={[
+            styles(theme).thumb,
+            thumbStyle,
+            disabled && styles(theme).disabled,
+            { transform: [{ translateX: thumbX }] },
+          ]}
+          {...panResponder.panHandlers}
+        />
+      </View>
     </View>
   );
 };
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
-    StyleSheet.create({
-        container: {
-            height: 40,
-            justifyContent: 'center',
-        },
-        track: {
-            height: theme?.SIZES?.TRACK_SIZE || 4,
-            width: '100%',
-            borderRadius: (theme?.SIZES?.TRACK_SIZE || 4) / 2,
-            position: 'absolute',
-            backgroundColor: theme?.COLORS?.LIGHT_MODE?.grey || '#E0E0E0',
-        },
-        thumb: {
-            width: theme?.SIZES?.THUMB_SIZE || 25,
-            height: theme?.SIZES?.THUMB_SIZE || 25,
-            borderRadius: (theme?.SIZES?.THUMB_SIZE || 25) / 2,
-            borderWidth: 2,
-            borderColor: theme?.COLORS?.LIGHT_MODE?.primary || '#007AFF',
-            backgroundColor: theme?.COLORS?.LIGHT_MODE?.white || '#FFFFFF',
-            position: 'absolute',
-            marginTop: -10,
-        },
-        disabled: {
-            backgroundColor: theme?.COLORS?.LIGHT_MODE?.muted || '#999999',
-            borderColor: theme?.COLORS?.LIGHT_MODE?.muted || '#999999',
-        },
-    });
+const styles = (theme: ReturnType<typeof useBazzTheme>) =>
+  StyleSheet.create({
+    container: {
+      height: 40,
+      justifyContent: 'center',
+    },
+    track: {
+      height: theme?.SIZES?.TRACK_SIZE || 4,
+      width: '100%',
+      borderRadius: (theme?.SIZES?.TRACK_SIZE || 4) / 2,
+      position: 'absolute',
+      backgroundColor: theme?.COLORS?.LIGHT_MODE?.grey || '#E0E0E0',
+    },
+    thumb: {
+      width: theme?.SIZES?.THUMB_SIZE || 25,
+      height: theme?.SIZES?.THUMB_SIZE || 25,
+      borderRadius: (theme?.SIZES?.THUMB_SIZE || 25) / 2,
+      borderWidth: 2,
+      borderColor: theme?.COLORS?.LIGHT_MODE?.primary || '#007AFF',
+      backgroundColor: theme?.COLORS?.LIGHT_MODE?.white || '#FFFFFF',
+      position: 'absolute',
+      marginTop: -10,
+    },
+    disabled: {
+      backgroundColor: theme?.COLORS?.LIGHT_MODE?.muted || '#999999',
+      borderColor: theme?.COLORS?.LIGHT_MODE?.muted || '#999999',
+    },
+  });
 
 export default Slider;

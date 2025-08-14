@@ -1,7 +1,7 @@
 import { JSX } from "react";
 import { Image, ImageStyle, StyleSheet, ViewStyle, Platform, TouchableOpacity } from "react-native";
 import Block from "./Block";
-import { useGalioTheme } from "./theme";
+import { useBazzTheme } from "./theme";
 import Icon from "./atomic/ions/icon";
 import Text from "./atomic/ions/text";
 
@@ -16,7 +16,7 @@ function renderImage({
     imageBlockStyle,
     imageStyle,
 }: ImageProps): JSX.Element | null {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     if (!image) return null;
     return (
         <Block card style={[styles(theme).imageBlock, imageBlockStyle] as any}>
@@ -32,7 +32,7 @@ interface AvatarProps {
 function renderAvatar({
     avatar,
 }: AvatarProps): JSX.Element | null {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     if (!avatar) return null;
     return <Image source={{uri: avatar}} style={styles(theme).avatar}/>;
 }
@@ -46,7 +46,7 @@ function renderLocation({
     location,
     locationColor,
 }: LocationProps): JSX.Element | null {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     if (!location) return null;
     if (typeof location !== 'string') {
         return location as JSX.Element;
@@ -99,7 +99,7 @@ function renderAuthor({
     footerStyle,
     rightSideComponent,
 }: AuthorProps): JSX.Element | null {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
 
     if (!title && !caption) return null;
 
@@ -205,7 +205,7 @@ function Card({
     flex = false,
     shadowColor,
 }: CardProps): JSX.Element {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     
     // Use authorImageSrc as avatar if provided
     const finalAvatar = authorImageSrc || avatar;
@@ -296,7 +296,7 @@ function Card({
     return cardContent;
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) => 
+const styles = (theme: ReturnType<typeof useBazzTheme>) => 
   StyleSheet.create({
     card: {
       borderWidth: 0,

@@ -1,7 +1,7 @@
-import React, { forwardRef, useImperativeHandle} from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import type { JSX } from 'react';
 import Typography from '../ions/text';
-import { useGalioTheme } from '../../theme';
+import { useBazzTheme } from '../../theme';
 import { TextStyle, Pressable, ViewStyle, Platform } from 'react-native';
 
 export interface LinkProps {
@@ -28,7 +28,7 @@ const Link = forwardRef<linkRef, LinkProps>(({
     activeOpacity = 0.7,
     ...rest
 }, ref): JSX.Element => {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
 
     const handlePress = () => {
         if (!disabled && onPress) {
@@ -36,7 +36,7 @@ const Link = forwardRef<linkRef, LinkProps>(({
         }
     };
 
-    useImperativeHandle(ref, ()=> ({
+    useImperativeHandle(ref, () => ({
         press: handlePress,
     }));
 

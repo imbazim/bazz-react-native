@@ -2,61 +2,61 @@ import React, { createContext, ReactNode, useContext, useMemo, ComponentType } f
 import type { JSX } from 'react';
 import { ViewStyle, TextStyle, ImageStyle } from 'react-native';
 
-import GALIO_COLORS from './colors';
-import GALIO_SIZES from './sizes';
+import BAZZ_COLORS from './colors';
+import BAZZ_SIZES from './sizes';
 
-export interface GalioTheme {
-    COLORS: typeof GALIO_COLORS;
-    SIZES: typeof GALIO_SIZES;
+export interface BazzTheme {
+    COLORS: typeof BAZZ_COLORS;
+    SIZES: typeof BAZZ_SIZES;
     [key: string]: any;
 }
 
-export interface GalioProviderProps {
+export interface BazzProviderProps {
     children: ReactNode;
     theme?: {
-        COLORS?: Partial<typeof GALIO_COLORS>;
-        SIZES?: Partial<typeof GALIO_SIZES>;
+        COLORS?: Partial<typeof BAZZ_COLORS>;
+        SIZES?: Partial<typeof BAZZ_SIZES>;
         customTheme?: Record<string, any>;
     };
 }
 
-const DEFAULT_THEME: GalioTheme = {
-    COLORS: GALIO_COLORS,
-    SIZES: GALIO_SIZES,
+const DEFAULT_THEME: BazzTheme = {
+    COLORS: BAZZ_COLORS,
+    SIZES: BAZZ_SIZES,
 }
 
-const GalioContext = createContext<GalioTheme>(DEFAULT_THEME);
+const BazzContext = createContext<BazzTheme>(DEFAULT_THEME);
 
-export function useGalioTheme(): GalioTheme {
-    const theme = useContext(GalioContext);
+export function useBazzTheme(): BazzTheme {
+    const theme = useContext(BazzContext);
     if (!theme) {
-        throw new Error('useGalioTheme must be used within a GalioProvider');
+        throw new Error('useBazzTheme must be used within a BazzProvider');
     }
     return theme;
 }
 
-export function GalioProvider({ theme = {}, children} : GalioProviderProps): JSX.Element {
-    const providerTheme = useMemo<GalioTheme>(()=> ({
+export function BazzProvider({ theme = {}, children} : BazzProviderProps): JSX.Element {
+    const providerTheme = useMemo<BazzTheme>(()=> ({
         COLORS: { ...DEFAULT_THEME.COLORS, ...theme?.COLORS},
         SIZES: { ...DEFAULT_THEME.SIZES, ...theme?.SIZES},
         ...theme?.customTheme,
     }), [theme]);
 
     return (
-        <GalioContext.Provider value={providerTheme}>
+        <BazzContext.Provider value={providerTheme}>
             {children}
-        </GalioContext.Provider>
+        </BazzContext.Provider>
     )
 }
 
-export function useGalioStyles<T>(styles?: (theme: GalioTheme) => T): T | undefined {
-    const theme = useGalioTheme();
+export function useBazzStyles<T>(styles?: (theme: BazzTheme) => T): T | undefined {
+    const theme = useBazzTheme();
     return styles ? styles(theme) : undefined;
 }
 
 type NamedStyles = ViewStyle | TextStyle | ImageStyle;
 
-export function withGalio<T extends ComponentType<any>>(
+export function withBazz<T extends ComponentType<any>>(
     Component: T,
     styles: NamedStyles
 ): ComponentType<any> {

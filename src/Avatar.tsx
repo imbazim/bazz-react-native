@@ -1,6 +1,6 @@
 import { JSX } from "react";
 import { StyleSheet, ViewStyle, View, Text, Image, ImageSourcePropType, Platform, ImageStyle } from "react-native";
-import { useGalioTheme } from "./theme";
+import { useBazzTheme } from "./theme";
 
 interface AvatarProps {
     source?: ImageSourcePropType;
@@ -29,7 +29,7 @@ function Avatar({
     accessibilityLabel,
     accessibilityHint,
 }: AvatarProps): JSX.Element {
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     const avatarSize = size || 50;
 
     const stylesheet = StyleSheet.create({

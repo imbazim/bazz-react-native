@@ -1,6 +1,6 @@
 import { JSX, useCallback, useEffect, useMemo, useState } from "react";
 import { Pressable, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { useGalioTheme } from "./theme";
+import { useBazzTheme } from "./theme";
 import Text from "./atomic/ions/text";
 
 interface RadioProps {
@@ -35,9 +35,9 @@ function Radio({
     accessibilityHint,
 }: RadioProps): JSX.Element {
 
-    const theme = useGalioTheme();
+    const theme = useBazzTheme();
     const [internalValue, setInternalValue] = useState(initialValue);
-    
+
     const isControlled = value !== undefined;
     const checked = isControlled ? value : internalValue;
 
@@ -72,34 +72,34 @@ function Radio({
 
     const radioPressHandler = useCallback(() => {
         if (disabled) return;
-        
+
         const newValue = !checked;
         onChange?.(newValue);
-        
+
         if (!isControlled) {
             setInternalValue(newValue);
         }
     }, [checked, disabled, onChange, isControlled]);
 
     const containerStyles = useMemo(() => [
-        styles(theme).container, 
-        flexDirection && { flexDirection }, 
+        styles(theme).container,
+        flexDirection && { flexDirection },
         containerStyle
     ], [theme, flexDirection, containerStyle]);
 
     const whichColor = useMemo(() => {
         if (!color) return theme.COLORS.LIGHT_MODE.info;
-        
+
         const upperColor = color.toUpperCase();
         const themeColor = theme.COLORS.LIGHT_MODE[upperColor as keyof typeof theme.COLORS.LIGHT_MODE];
-        
+
         if (themeColor) {
             if (typeof themeColor === 'function') {
                 return themeColor();
             }
             return themeColor;
         }
-        
+
         return color;
     }, [color, theme.COLORS]);
 
@@ -145,7 +145,7 @@ function Radio({
         >
             <View style={radioButtonOuterStyles}>
                 {checked ? (
-                    <View 
+                    <View
                         style={radioButtonInnerStyles}
                     />
                 ) : null}
@@ -155,7 +155,7 @@ function Radio({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
+const styles = (theme: ReturnType<typeof useBazzTheme>) =>
     StyleSheet.create({
         container: {
             flexDirection: 'row',
