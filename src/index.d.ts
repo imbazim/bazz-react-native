@@ -1,4 +1,4 @@
-import React, { ReactNode, ComponentType } from 'react';
+import React, { ReactNode, ComponentType, FC, PropsWithChildren } from 'react';
 import {
   TouchableOpacityProps,
   ImageStyle,
@@ -6,10 +6,12 @@ import {
   TextStyle,
   SwitchProps as RNSwitchProps,
   TextInputProps,
+  ImageSourcePropType,
 } from 'react-native';
 
-declare module 'bazz-react-native' {
+declare module 'galio-framework' {
   type IconFamilyType =
+    | 'fontisto'
     | 'Galio'
     | 'zocial'
     | 'octicon'
@@ -26,14 +28,45 @@ declare module 'bazz-react-native' {
     | 'antdesign';
 
   type BaseColorType = string;
-
   type ButtonColorType = string;
 
   interface BaseProps {
+    children?: ReactNode;
     [key: string]: any;
   }
 
+  export interface AccordionProps extends BaseProps {
+    style?: ViewStyle | ViewStyle[];
+    title?: string;
+    titleStyle?: TextStyle;
+    icon?: string;
+    iconFamily?: IconFamilyType;
+    iconSize?: number;
+    iconColor?: string;
+    expanded?: boolean;
+    onPress?: () => void;
+  }
+  export const Accordion: FC<AccordionProps>;
+
+  export interface AvatarProps extends BaseProps {
+    style?: ViewStyle | ViewStyle[];
+    source?: ImageSourcePropType;
+    size?: number;
+    imageStyle?: ImageStyle;
+    color?: string;
+    name?: string;
+    family?: IconFamilyType;
+    icon?: string;
+    iconSize?: number;
+    iconColor?: string;
+    rounded?: boolean;
+    borderColor?: string;
+    borderWidth?: number;
+  }
+  export const Avatar: FC<AvatarProps>;
+
   export interface BlockProps extends BaseProps {
+    style?: ViewStyle | ViewStyle[];
     bottom?: boolean;
     card?: boolean;
     center?: boolean;
@@ -51,9 +84,10 @@ declare module 'bazz-react-native' {
     top?: boolean;
     width?: number;
   }
-  export class Block extends React.Component<BlockProps> {}
+  export const Block: FC<BlockProps>;
 
-  export interface ButtonProps extends TouchableOpacityProps, BaseProps {
+  export interface ButtonProps extends Omit<TouchableOpacityProps, 'style'>, BaseProps {
+    style?: ViewStyle | ViewStyle[];
     capitalize?: boolean;
     color?: ButtonColorType;
     disabled?: boolean;
@@ -73,9 +107,10 @@ declare module 'bazz-react-native' {
     size?: 'small' | 'large' | number;
     uppercase?: boolean;
   }
-  export class Button extends React.Component<ButtonProps> {}
+  export const Button: FC<ButtonProps>;
 
   export interface CardProps extends BaseProps {
+    style?: ViewStyle | ViewStyle[];
     card?: boolean;
     shadow?: boolean;
     borderless?: boolean;
@@ -91,9 +126,10 @@ declare module 'bazz-react-native' {
     captionColor?: string;
     footerStyle?: ViewStyle;
   }
-  export class Card extends React.Component<CardProps> {}
+  export const Card: FC<CardProps>;
 
-  export interface CheckBoxProps extends BaseProps {
+  export interface CheckboxProps extends BaseProps {
+    style?: ViewStyle | ViewStyle[];
     checkboxStyle?: ViewStyle;
     disabled?: boolean;
     flexDirection?: ViewStyle['flexDirection'];
@@ -107,25 +143,26 @@ declare module 'bazz-react-native' {
     labelStyle?: TextStyle;
     onChange?: () => void;
   }
-  export class CheckBox extends React.Component<CheckBoxProps> {}
+  export const Checkbox: FC<CheckboxProps>;
 
   export interface DeckSwiperProps extends BaseProps {
-    style?: ViewStyle;
+    style?: ViewStyle | ViewStyle[];
     components?: ReactNode[];
     onSwipeRight?: () => void;
     onSwipeLeft?: () => void;
     focusedElementStyle?: ViewStyle;
     nextElementStyle?: ViewStyle;
   }
-  export class DeckSwiper extends React.Component<DeckSwiperProps> {}
+  export const DeckSwiper: FC<DeckSwiperProps>;
 
   export interface IconProps extends BaseProps {
+    style?: ViewStyle | ViewStyle[];
     name?: string;
     family?: IconFamilyType;
     size?: number;
     color?: string;
   }
-  export class Icon extends React.Component<IconProps> {}
+  export const Icon: FC<IconProps>;
 
   export interface InputProps
     extends Omit<
@@ -137,6 +174,7 @@ declare module 'bazz-react-native' {
         | 'underlineColorAndroid'
       >,
       BaseProps {
+    style?: ViewStyle | ViewStyle[];
     type?: TextInputProps['keyboardType'];
     password?: boolean;
     label?: string;
@@ -155,39 +193,21 @@ declare module 'bazz-react-native' {
     bottomHelp?: boolean;
     iconSize?: number;
   }
-  export class Input extends React.Component<InputProps> {}
+  export const Input: FC<InputProps>;
 
-  export interface TextAreaProps
-  extends Omit<
-      TextInputProps,
-      | 'style'
-      | 'keyboardType'
-      | 'secureTextEntry'
-      | 'placeholderTextColor'
-      | 'underlineColorAndroid'
-    >,
-    BaseProps {
-  type?: TextInputProps['keyboardType'];
-  password?: boolean;
-  label?: string;
-  bgColor?: string;
-  rounded?: boolean;
-  borderless?: boolean;
-  viewPass?: boolean;
-  icon?: string;
-  iconColor?: string;
-  family?: IconFamilyType;
-  color?: string;
-  help?: string;
-  left?: boolean;
-  right?: boolean;
-  topHelp?: boolean;
-  bottomHelp?: boolean;
-  iconSize?: number;
-}
-export class TextArea extends React.Component<TextAreaProps> {}
+  export interface LinkProps extends Omit<TouchableOpacityProps, 'style'>, BaseProps {
+    style?: ViewStyle | ViewStyle[];
+    textStyle?: TextStyle;
+    color?: string;
+    size?: number;
+    bold?: boolean;
+    italic?: boolean;
+    underline?: boolean;
+  }
+  export const Link: FC<LinkProps>;
 
   export interface NavBarProps extends BaseProps {
+    style?: ViewStyle | ViewStyle[];
     back?: boolean;
     hideLeft?: boolean;
     hideRight?: boolean;
@@ -205,9 +225,10 @@ export class TextArea extends React.Component<TextAreaProps> {}
     titleStyle?: ViewStyle;
     transparent?: boolean;
   }
-  export class NavBar extends React.Component<NavBarProps> {}
+  export const NavBar: FC<NavBarProps>;
 
   export interface RadioProps extends BaseProps {
+    style?: ViewStyle | ViewStyle[];
     color?: string;
     containerStyle?: ViewStyle;
     radioOuterStyle?: ViewStyle;
@@ -219,39 +240,10 @@ export class TextArea extends React.Component<TextAreaProps> {}
     onChange?: () => void;
     value?: boolean;
   }
-  export class Radio extends React.Component<RadioProps> {}
-
-  export interface TextProps extends BaseProps {
-    h1?: boolean;
-    h2?: boolean;
-    h3?: boolean;
-    h4?: boolean;
-    h5?: boolean;
-    p?: boolean;
-    size?: number;
-    color?: string;
-    muted?: boolean;
-    bold?: boolean;
-    italic?: boolean;
-  }
-  export class Text extends React.Component<TextProps> {}
-
-  export interface ToastProps extends BaseProps {
-    style?: ViewStyle;
-    children?: ReactNode;
-    isShow?: boolean;
-    positionIndicator?: 'top' | 'center' | 'bottom';
-    positionOffset?: number;
-    fadeInDuration?: number;
-    fadeOutDuration?: number;
-    color?: BaseColorType;
-    round?: boolean;
-    textStyle?: TextStyle;
-    useNativeDriver?: boolean;
-  }
-  export class Toast extends React.Component<ToastProps> {}
+  export const Radio: FC<RadioProps>;
 
   export interface SliderProps extends BaseProps {
+    style?: ViewStyle | ViewStyle[];
     activeColor?: string;
     value?: number;
     disabled?: boolean;
@@ -264,9 +256,10 @@ export class TextArea extends React.Component<TextAreaProps> {}
     onSlidingStart?: () => void;
     onValueChange?: () => void;
   }
-  export class Slider extends React.Component<SliderProps> {}
+  export const Slider: FC<SliderProps>;
 
-  export interface SwitchProps extends RNSwitchProps, BaseProps {
+  export interface SwitchProps extends Omit<RNSwitchProps, 'style'>, BaseProps {
+    style?: ViewStyle | ViewStyle[];
     color?: BaseColorType;
     disabled?: boolean;
     initialValue?: boolean;
@@ -277,7 +270,37 @@ export class TextArea extends React.Component<TextAreaProps> {}
     ios_backgroundColor?: string;
     onChange?: () => void;
   }
-  export class Switch extends React.Component<SwitchProps> {}
+  export const Switch: FC<SwitchProps>;
+
+  export interface TextProps extends BaseProps {
+    style?: ViewStyle | ViewStyle[];
+    h1?: boolean;
+    h2?: boolean;
+    h3?: boolean;
+    h4?: boolean;
+    h5?: boolean;
+    p?: boolean;
+    size?: number;
+    color?: string;
+    muted?: boolean;
+    bold?: boolean;
+    italic?: boolean;
+  }
+  export const Text: FC<TextProps>;
+
+  export interface ToastProps extends BaseProps {
+    style?: ViewStyle | ViewStyle[];
+    isShow?: boolean;
+    positionIndicator?: 'top' | 'center' | 'bottom';
+    positionOffset?: number;
+    fadeInDuration?: number;
+    fadeOutDuration?: number;
+    color?: BaseColorType;
+    round?: boolean;
+    textStyle?: TextStyle;
+    useNativeDriver?: boolean;
+  }
+  export const Toast: FC<ToastProps>;
 
   interface ThemeType {
     SIZES?: {
@@ -325,7 +348,7 @@ export class TextArea extends React.Component<TextAreaProps> {}
       NAVBAR_RIGHT_FLEX?: number;
       NAVBAR_RIGHT_HEIGHT?: number;
       NAVBAR_RIGHT_MARGIN?: number;
-      [key: string]: number;
+      [key: string]: number | undefined;
     };
     COLORS?: {
       FACEBOOK?: string;
@@ -347,18 +370,33 @@ export class TextArea extends React.Component<TextAreaProps> {}
       MUTED?: string;
       TRANSPARENT?: string;
       NEUTRAL?: string;
-      [key: string]: string;
+      [key: string]: string | undefined;
     };
   }
-  export const theme: ThemeType = {};
-  export interface BazzProviderProps extends BaseProps {
-    theme: ThemeType;
-  }
-  export class BazzProvider extends React.Component<BazzProviderProps> {}
+  
+  export const theme: ThemeType;
+  
+  export interface GalioProviderProps extends PropsWithChildren<{
+    theme?: {
+      COLORS?: Partial<ThemeType['COLORS']>;
+      SIZES?: Partial<ThemeType['SIZES']>;
+      customTheme?: Record<string, any>;
+    };
+  }> {}
+  
+  export const GalioProvider: FC<GalioProviderProps>;
 
   type NamedStyles = ViewStyle | TextStyle | ImageStyle;
-  export function withBazz<T extends ComponentType<any>>(
+  
+  export function withGalio<T extends ComponentType<any>>(
     Component: T,
     styles: NamedStyles
   ): ComponentType<any>;
+
+  export function useGalioTheme(): ThemeType;
+}
+
+declare module '*.ttf' {
+  const content: any;
+  export default content;
 }
