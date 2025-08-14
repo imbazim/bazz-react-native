@@ -16,6 +16,7 @@ export { default as Toast } from './Toast';
 // Atomic Components
 export { default as Button } from './atomic/atoms/Button';
 export { default as Input } from './atomic/atoms/Input';
+export { default as TextArea } from './atomic/atoms/TextArea';
 export { default as Link } from './atomic/atoms/Link';
 export { default as Icon } from './atomic/ions/icon';
 export { default as Text } from './atomic/ions/text';
