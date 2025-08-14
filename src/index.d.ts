@@ -166,14 +166,14 @@ declare module 'bazz-react-native' {
 
   export interface InputProps
     extends Omit<
-        TextInputProps,
-        | 'style'
-        | 'keyboardType'
-        | 'secureTextEntry'
-        | 'placeholderTextColor'
-        | 'underlineColorAndroid'
-      >,
-      BaseProps {
+      TextInputProps,
+      | 'style'
+      | 'keyboardType'
+      | 'secureTextEntry'
+      | 'placeholderTextColor'
+      | 'underlineColorAndroid'
+    >,
+    BaseProps {
     style?: ViewStyle | ViewStyle[];
     type?: TextInputProps['keyboardType'];
     password?: boolean;
@@ -194,6 +194,37 @@ declare module 'bazz-react-native' {
     iconSize?: number;
   }
   export const Input: FC<InputProps>;
+
+  export interface TextAreaProps
+    extends Omit<
+      TextInputProps,
+      | 'style'
+      | 'keyboardType'
+      | 'secureTextEntry'
+      | 'placeholderTextColor'
+      | 'underlineColorAndroid'
+    >,
+    BaseProps {
+    style?: ViewStyle | ViewStyle[];
+    type?: TextInputProps['keyboardType'];
+    password?: boolean;
+    label?: string;
+    bgColor?: string;
+    rounded?: boolean;
+    borderless?: boolean;
+    viewPass?: boolean;
+    icon?: string;
+    iconColor?: string;
+    family?: IconFamilyType;
+    color?: string;
+    help?: string;
+    left?: boolean;
+    right?: boolean;
+    topHelp?: boolean;
+    bottomHelp?: boolean;
+    iconSize?: number;
+  }
+  export const TextArea: FC<TextAreaProps>;
 
   export interface LinkProps extends Omit<TouchableOpacityProps, 'style'>, BaseProps {
     style?: ViewStyle | ViewStyle[];
@@ -373,21 +404,21 @@ declare module 'bazz-react-native' {
       [key: string]: string | undefined;
     };
   }
-  
+
   export const theme: ThemeType;
-  
+
   export interface BazzProviderProps extends PropsWithChildren<{
     theme?: {
       COLORS?: Partial<ThemeType['COLORS']>;
       SIZES?: Partial<ThemeType['SIZES']>;
       customTheme?: Record<string, any>;
     };
-  }> {}
-  
+  }> { }
+
   export const BazzProvider: FC<BazzProviderProps>;
 
   type NamedStyles = ViewStyle | TextStyle | ImageStyle;
-  
+
   export function withBazz<T extends ComponentType<any>>(
     Component: T,
     styles: NamedStyles
