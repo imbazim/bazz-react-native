@@ -1,7 +1,7 @@
 
 <p align="center" dir="auto">
   <a target="_blank" rel="noopener noreferrer" href="https://imbazim.is-a.dev">
-    <img src="https://imbazim.is-a.dev/bz-logo-dark-rounded-512x512.png" style="max-width: 100%; width: 120px; height: auto;">
+    <img src="https://imbazim.is-a.dev/bz-logo-dark-rounded-180x180.png" style="width: 120px; height: auto; max-width: 100%;">
   </a>
 </p>
 <h1 align="center">Bazz React Native</h1>
