@@ -25,42 +25,67 @@ const DEFAULT_THEME: BazzTheme = {
     SIZES: BAZZ_SIZES,
 }
 
-const BazzContext = createContext<BazzTheme>(DEFAULT_THEME);
+const BazzContext = createContext<BazzTheme | null>(null);
 
 export function useBazzTheme(): BazzTheme {
     const theme = useContext(BazzContext);
     if (!theme) {
-        throw new Error('useBazzTheme must be used within a BazzProvider');
+        console.warn('useBazzTheme: No BazzProvider found, using default theme');
+        return DEFAULT_THEME;
     }
     return theme;
 }
 
-export function BazzProvider({ theme = {}, children} : BazzProviderProps): JSX.Element {
-    const providerTheme = useMemo<BazzTheme>(()=> ({
-        COLORS: { ...DEFAULT_THEME.COLORS, ...theme?.COLORS},
-        SIZES: { ...DEFAULT_THEME.SIZES, ...theme?.SIZES},
-        ...theme?.customTheme,
-    }), [theme]);
+export function BazzProvider({ theme = {}, children }: BazzProviderProps): JSX.Element {
+    const providerTheme = useMemo<BazzTheme>(() => {
+        try {
+            return {
+                COLORS: { ...DEFAULT_THEME.COLORS, ...theme?.COLORS },
+                SIZES: { ...DEFAULT_THEME.SIZES, ...theme?.SIZES },
+                ...theme?.customTheme,
+            };
+        } catch (error) {
+            console.warn('BazzProvider: Error merging themes, falling back to default', error);
+            return DEFAULT_THEME;
+        }
+    }, [theme]);
 
     return (
         <BazzContext.Provider value={providerTheme}>
             {children}
         </BazzContext.Provider>
-    )
+    );
 }
 
-export function useBazzStyles<T>(styles?: (theme: BazzTheme) => T): T | undefined {
+export function useBazzStyles<T>(styleFactory?: (theme: BazzTheme) => T): T | undefined {
     const theme = useBazzTheme();
-    return styles ? styles(theme) : undefined;
+    return useMemo(() => {
+        return styleFactory ? styleFactory(theme) : undefined;
+    }, [styleFactory, theme]);
 }
 
 type NamedStyles = ViewStyle | TextStyle | ImageStyle;
 
 export function withBazz<T extends ComponentType<any>>(
     Component: T,
-    styles: NamedStyles
-): ComponentType<any> {
-    return Component;
+    styleFactory?: (theme: BazzTheme) => Record<string, NamedStyles>
+): T {
+    if (!styleFactory) {
+        return Component;
+    }
+    
+    const WrappedComponent = (props: any) => {
+        const theme = useBazzTheme();
+        const styles = useMemo(
+            () => styleFactory(theme),
+            [theme]
+        );
+        
+        return <Component {...props} styles={styles} />;
+    };
+    
+    WrappedComponent.displayName = `withBazz(${Component.displayName || Component.name})`;
+    return WrappedComponent as T;
 }
 
 export default DEFAULT_THEME;
